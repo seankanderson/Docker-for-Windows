@@ -4,7 +4,7 @@
 
 
 ### Installing Docker for Windows
-Use windows 10 or Windows Server 2016.  Be sure to manually check for and apply all OS updates from Microsoft.  I ran my tests on Windows 10 Pro Fall Creators Update Version 1709 Build 16299.125  
+Use Windows 10 or Windows Server 2016.  Be sure to manually check for and apply all OS updates from Microsoft.  I ran my tests on Windows 10 Pro Fall Creators Update Version 1709 Build 16299.125  
 (Hit Windows Key, Type: winver [ENTER] to find version)
 
 Docker is not compatible with Windows Server 2012 or below.
