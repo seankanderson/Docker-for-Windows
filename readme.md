@@ -19,7 +19,7 @@ Once you have a Windows Server 2016 or Windows 10 instance working and on the ne
 
 * _Note: You can also install a native docker windows service instead of the Docker for Windows program.  I recommend saving that for a later session._
 
-If virtualization is enabled and working on your computer, Docker will install and start up in linux mode.  Switch to Windows containers using the Docker system tray icon.  Right-click the Docker whale icon.
+If virtualization is enabled and working on your computer, **Docker will install and start up in linux mode**.  Switch to Windows containers using the Docker system tray icon.  Right-click the Docker whale icon.
 
 If you run into any blockers check out this document: 
 
