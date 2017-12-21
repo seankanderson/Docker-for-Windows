@@ -13,15 +13,15 @@ Docker uses Hyper-V to run the containers on Windows.  Your computer or VM must 
 
 Your computer or VM should have 4 - 8 cores and 8 - 24GB RAM for initial testing.  VMware ESXi 6+ is required by Docker if using VMware virtual machines.
 
-Once you have a Windows (Server 2016 or Windows 10) working and on the network with internet access, download Docker for Windows from the Docker Store and install it.  
+Once you have a Windows Server 2016 or Windows 10 instance working and on the network with internet access, download Docker for Windows from the Docker Store and install it.  
 
 [Download Docker Community Edition](https://www.docker.com/community-edition)
 
-* _Note: You can also install a native docker windows service instead of the Docker for Windows program.  I reccommend saving that for a later session._
+* _Note: You can also install a native docker windows service instead of the Docker for Windows program.  I recommend saving that for a later session._
 
-If virtualization is enabled and capable on your computer, Docker will install and start in linux mode--ready to go.  Switch to Windows containers using the Docker system tray icon right-click menu.  Right-click the Docker whale icon to switch.
+If virtualization is enabled and working on your computer, Docker will install and start up in linux mode.  Switch to Windows containers using the Docker system tray icon.  Right-click the Docker whale icon.
 
-If you run into any blockers check out this document for an answer. 
+If you run into any blockers check out this document: 
 
 https://docs.docker.com/docker-for-windows
 
@@ -48,20 +48,20 @@ docker [tab]
 docker --help
 ```
 
-### Image and Container Development/Deployment Workflow
+### Image and Container Development and Deployment Workflow
 * Download Docker image from an on-prem or cloud-based Docker repository 
-* Build new containers from those images (including your application)
+* Build new containers from that image (including your application)
 * Run containers
-* Monitor containers
 * Stop Containers
 * Remove containers
+* Monitor containers
 
-Once images are pulled into Docker they are used (copied) to create containers. A base image generally remains untouched and you can create as many different containers from it as you need. You can download ready-made images or you can make your own. For this excersize we download a Windows image from the Docker Store Respository.  Easy.
+Once images are pulled into Docker they are used to create containers (copied). A base image generally remains untouched and you can create as many different containers from it as you need. You can download ready-made images or you can make your own. For this excersize we will download a Windows image from the Docker Store Respository automatically.  Easy.
 
 ### Get Application Binaries
-You can download a .NET Framework project from Github and try to build and deploy it to Docker but I prefer to create my own project in Visual Studio to get a feel for the end-to-end process and to avoid any issues.  If you are not a programmer don't worry.  It is easy to create and build an example project in Visual Studio without knowing how to program.  Doing it this way, we can introduce internal and external dependencies such as 3rd party libraries or databases (if you are a programmer or adventerous) and use those in the test project as you see fit.  A new project will be raw .NET code. 
+You can download a .NET Framework project from Github and try to build and deploy it to Docker but I prefer to create my own project in Visual Studio to get a feel for the end-to-end process and to avoid any issues.  If you are not a programmer don't worry.  It is easy to create and build an example project in Visual Studio without knowing how to program.  Doing it this way, you can introduce internal and external dependencies such as 3rd party libraries or databases and use those in the test project as you see fit.  You can find examples on the web for creating new projects in Visual Studio but you are probably clever enough to poke around and get it done.  
 
-It is a good idea to instrument your application with **Azure Application Insights** at this point--if you have an Azure account.  This is easy to accomplish from within Visual Studio by right-clicking on the project.
+It is a good idea to instrument your application with **Azure Application Insights** at this point--if you have an Azure account.  This is easy to accomplish from within Visual Studio by right-clicking on the project.  It doesnt cost anything at this scale.  
 
 ### Prepare the application for Docker
 Publish your application to a folder by right-clicking the project in Visual Studio.  Go to that folder and create a file named ``` Dockerfile```
@@ -72,7 +72,7 @@ Include this text in the ```Dockerfile```
 FROM microsoft/aspnet
 COPY . /inetpub/wwwroot
 ```
-The FROM command tells Docker what image to build your new container from.  If the ```microsoft/aspnet``` base image is not in Docker already, Docker will pull it from the web.  The image is 7GB.  The COPY command sends all files from the current folder to the /inetpub/wwwroot folder on a new Windows image.
+The FROM command tells Docker what image to build your container from.  If the ```microsoft/aspnet``` base image is not in Docker already, Docker will pull it from the web.  The image is 7GB.  The COPY command sends all of the files from the current publish folder to the /inetpub/wwwroot folder on the new image. 
 
 ### Build a New Image
 Open a powershell console in the published folder, and run this:
