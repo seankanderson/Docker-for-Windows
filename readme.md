@@ -138,3 +138,6 @@ See: [Docker API Reference](https://docs.docker.com/engine/api/v1.32/)
 
 Extensive Docker Daemon logs are located in:
 ```C:\Users\username\AppData\Local\Docker```
+
+__Kitematic__
+Kitematic is a GUI interface alternative to the above commands.  You have to download, unzip, and place the files for Kitematic in ```C:\Program Files\Docker\Kitematic```.  Then you can run it from the Docker tray menu.  It doesnt provide a stats or stats API interface for some reason but otherwise makes for a nice, pretty place to accidentally break things. 
