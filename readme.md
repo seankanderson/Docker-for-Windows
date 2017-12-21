@@ -1,0 +1,140 @@
+# Docker for Windows Quick Start Tutorial
+
+#### Get Docker for Windows working and smoke test your .NET Framework applications
+
+
+### Installing Docker for Windows
+Use windows 10 or Windows Server 2016.  Be sure to manually check for and apply all OS updates from Microsoft.  I ran my tests on Windows 10 Pro Fall Creators Update Version 1709 Build 16299.125  
+(Hit Windows Key, Type: winver [ENTER] to find version)
+
+Docker is not compatible with Windows Server 2012 or below.
+
+Docker uses Hyper-V to run the containers on Windows.  Your computer or VM must be capable of hardware virtualization.  Sometimes your BIOS will have a setting that needs configured to enable virtualization.  VMware VMs require that virtualization be enabled for the guest OS in the VM's CPU configuration.  
+
+Your computer or VM should have 4 - 8 cores and 8 - 24GB RAM for initial testing.  VMware ESXi 6+ is required by Docker if using VMware virtual machines.
+
+Once you have a Windows (Server 2016 or Windows 10) working and on the network with internet access, download Docker for Windows from the Docker Store and install it.  
+
+[Download Docker Community Edition](https://www.docker.com/community-edition)
+
+* _Note: You can also install a native docker windows service instead of the Docker for Windows program.  I reccommend saving that for a later session._
+
+If virtualization is enabled and capable on your computer, Docker will install and start in linux mode--ready to go.  Switch to Windows containers using the Docker system tray icon right-click menu.  Right-click the Docker whale icon to switch.
+
+If you run into any blockers check out this document for an answer. 
+
+https://docs.docker.com/docker-for-windows
+
+
+### Working in Powershell
+
+Open a powershell console or ISE as Administrator.
+
+
+___Get Docker run info___
+```powershell
+docker info
+```
+
+___Enable Docker Syntax Tabbing in Powershell___
+```powershell
+Set-Executionpolicy RemoteSigned
+Install-Module posh-docker
+Import-Module posh-docker
+```
+
+```powershell
+docker [tab]
+docker --help
+```
+
+### Image and Container Development/Deployment Workflow
+* Download Docker image from an on-prem or cloud-based Docker repository 
+* Build new containers from those images (including your application)
+* Run containers
+* Monitor containers
+* Stop Containers
+* Remove containers
+
+Once images are pulled into Docker they are used (copied) to create containers. A base image generally remains untouched and you can create as many different containers from it as you need. You can download ready-made images or you can make your own. For this excersize we download a Windows image from the Docker Store Respository.  Easy.
+
+### Get Application Binaries
+You can download a .NET Framework project from Github and try to build and deploy it to Docker but I prefer to create my own project in Visual Studio to get a feel for the end-to-end process and to avoid any issues.  If you are not a programmer don't worry.  It is easy to create and build an example project in Visual Studio without knowing how to program.  Doing it this way, we can introduce internal and external dependencies such as 3rd party libraries or databases (if you are a programmer or adventerous) and use those in the test project as you see fit.  A new project will be raw .NET code. 
+
+It is a good idea to instrument your application with **Azure Application Insights** at this point--if you have an Azure account.  This is easy to accomplish from within Visual Studio by right-clicking on the project.
+
+### Prepare the application for Docker
+Publish your application to a folder by right-clicking the project in Visual Studio.  Go to that folder and create a file named ``` Dockerfile```
+
+Include this text in the ```Dockerfile```
+
+```dockerfile
+FROM microsoft/aspnet
+COPY . /inetpub/wwwroot
+```
+The FROM command tells Docker what image to build your new container from.  If the ```microsoft/aspnet``` base image is not in Docker already, Docker will pull it from the web.  The image is 7GB.  The COPY command sends all files from the current folder to the /inetpub/wwwroot folder on a new Windows image.
+
+### Build a New Image
+Open a powershell console in the published folder, and run this:
+
+```
+docker build -t myimage .
+```
+
+This command references the Dockerfile (by convention) and pulls down the ```microsoft/aspnet``` image from the official Docker repository and combines it with your application to create a new image called: myimage.  You should have two images now. Verify.
+
+```
+docker images
+```
+### Create and Run a New App Container
+```
+docker run -d --name mycontainer myimage
+```
+
+Your new container and application should now be live!
+
+You can run the above command with different container names to create as many containers as you want for your application--until you run out of memory.  Of course this would provide no benefit outisde of development and testing.  You would want to start up containers on distinct resources or employ something like Docker Swarm or Kubernetes to provide for high availability and scalability. 
+
+List the new container(s): ```docker ps```
+
+### Test the App
+
+Get the IP address of the app:
+
+```
+docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" mycontainer
+```
+
+Plug that IP address into a browser to visit the site (or hit the API).
+
+### Stopping and Removing Containers
+```
+docker stop mycontainer
+docker rm mycontainer
+```
+
+###  Monitoring Docker and Containers
+
+__View container stats and Docker logs from the command line___
+```
+docker stats --no-stream
+docker stats --all --format "table {{.ID}}\t{{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"
+docker logs mycontainer
+```
+
+__Interact with Docker and containers via the Docker API__
+
+Enable **Expose daemon** in Docker General Settings to enable the API--via the tray icon right-click menu.  These links should work if you have enabled Docker Daemon access and are running Docker on your local machine with a live container named: mycontainer.
+
+http://localhost:2375/v1.32/containers/json
+
+http://localhost:2375/v1.32/containers/mycontainer/json
+
+http://localhost:2375/v1.32/containers/mycontainer/stats
+
+http://localhost:2375/v1.32/containers/mycontainer/stats?stream=false
+
+See: [Docker API Reference](https://docs.docker.com/engine/api/v1.32/)
+
+Extensive Docker Daemon logs are located in:
+```C:\Users\username\AppData\Local\Docker```
