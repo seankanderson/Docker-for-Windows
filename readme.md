@@ -99,7 +99,7 @@ docker run -d --name mycontainer myimage
 
 Your new container and application should now be live!
 
-You can run the above command with different container names to create as many containers as you want for your application--until you run out of memory.  Of course this would provide no benefit, aside from development and testing.  You need to start up containers on distinct resources or employ something like Docker Swarm or Kubernetes to provide high availability and scalability. 
+You can run the above command with different container names to create as many containers as you want for your application--until you run out of memory.  Of course this would provide no benefit, aside from development and testing.  You need to start up containers on distinct resources or employ something like Docker Swarm or Kubernetes to enjoy high availability and scalability. 
 
 List the new container(s): ```docker ps```
 
