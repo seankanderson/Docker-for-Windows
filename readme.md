@@ -61,7 +61,7 @@ docker --help
 Once images are pulled into Docker they are used to create custom images and/or create new containers (copied). A base image generally remains untouched and you can create as many different images and containers from it as needed. You can download ready-made images or you can make your own. For this excersize we will download a Windows image from the official Docker Respository automatically and customize it with our own application.  From that custom image we will create containers that serve the application.  
 
 ### Get Application Binaries
-You can download a .NET Framework project from Github and try to build it but it is good idea to create a new project in Visual Studio or use an existing one.  Start simple, if your existing application has an extensive web.config you should create a new project for this test.  
+You can download a .NET Framework project from Github and try to build it but it is good idea to create a new project in Visual Studio or use an existing one of your own.  Start simple, if your existing application has an extensive web.config you should create a new project for this test.  
 
 If you are not a programmer, don't worry.  It is easy to create and build an example project in Visual Studio without knowing how to program.  By creating a new project, you can introduce external dependencies--such as a database--in stages to prevent obscurring the test with unneeded complexity.  You can find examples on the web for creating new projects in Visual Studio but you are probably clever enough to poke around and get it done.  
 
