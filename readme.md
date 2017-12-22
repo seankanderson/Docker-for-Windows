@@ -70,7 +70,7 @@ It is a good idea to instrument your application with **Azure Application Insigh
 ### Prepare the application for Docker
 Publish your application to a folder by right-clicking the project in Visual Studio.  Go to that folder and create a file named ``` Dockerfile```
 
-* _NOTE: Visual Studio has an option to include Docker support when creating a new project. Enabling that option creates this file for you.
+* _NOTE: Visual Studio has an option to include Docker support when creating a new project. Enabling that option creates this file for you._
 
 Include this text in the ```Dockerfile```
 
