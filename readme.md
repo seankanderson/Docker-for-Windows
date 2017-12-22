@@ -37,6 +37,7 @@ docker info
 ```
 
 ___Enable Docker Syntax Tabbing in Powershell___
+* _NOTE: This step is not required.  The purpose is to enabled code completetion for Docker commands in Powershell._
 ```powershell
 Set-Executionpolicy RemoteSigned
 Install-Module posh-docker
@@ -50,7 +51,8 @@ docker --help
 
 ### Image and Container Development and Deployment Workflow
 * Download Docker image from an on-prem or cloud-based Docker repository 
-* Build new containers from that image (including your application)
+* Build a new image that includes your application
+* Build new containers from that image 
 * Run containers
 * Stop Containers
 * Remove containers
