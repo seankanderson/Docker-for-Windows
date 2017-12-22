@@ -63,7 +63,7 @@ Once images are pulled into Docker they are used to create custom images and/or 
 ### Get Application Binaries
 You can download a .NET Framework project from Github and try to build it but it is good idea to create a new project in Visual Studio or use an existing one of your own.  Start simple, if your existing application has an extensive web.config you should create a new project for this test.  
 
-If you are not a programmer, don't worry.  It is easy to create and build an example project in Visual Studio without knowing how to program.  By creating a new project, you can introduce external dependencies--such as a database--in stages to prevent obscurring the test with unneeded complexity.  You can find examples on the web for creating new projects in Visual Studio but you are probably clever enough to poke around and get it done.  
+If you are not a programmer, don't worry.  It is easy to create and build an example project in Visual Studio without knowing how to program.  By creating a new project, you can introduce external dependencies--such as a database--in stages to prevent obscurring the test with unneeded complexity.  You can find examples on the web for creating new projects in Visual Studio but you are probably clever enough to poke around and get it done.  Visual Studio hint: ```Ctrl+Shift+N, Visual C#, Web, ASP.NET Web Application (.NET Framework), Single Page Application```
 
 It is a good idea to instrument your application with **Azure Application Insights** at this point--if you have an Azure account.  This is easy to accomplish from within Visual Studio by right-clicking on the project.  It doesnt cost anything at this scale.  
 
