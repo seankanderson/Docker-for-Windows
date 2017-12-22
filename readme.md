@@ -37,7 +37,7 @@ docker info
 ```
 
 ___Enable Docker Syntax Tabbing in Powershell___
-* _NOTE: This step is not required.  The purpose is to enabled code completetion for Docker commands in Powershell._
+* _NOTE: This step is not required.  The purpose is to enable code completetion for Docker commands in Powershell._
 ```powershell
 Set-Executionpolicy RemoteSigned
 Install-Module posh-docker
@@ -58,10 +58,12 @@ docker --help
 * Remove containers
 * Monitor containers
 
-Once images are pulled into Docker they are used to create containers (copied). A base image generally remains untouched and you can create as many different containers from it as you need. You can download ready-made images or you can make your own. For this excersize we will download a Windows image from the Docker Store Respository automatically.  Easy.
+Once images are pulled into Docker they are used to create custom images and/or create new containers (copied). A base image generally remains untouched and you can create as many different images and containers from it as needed. You can download ready-made images or you can make your own. For this excersize we will download a Windows image from the official Docker Respository automatically and customize it with our own application.  From that custom image we will create containers that serve the application.  
 
 ### Get Application Binaries
-You can download a .NET Framework project from Github and try to build and deploy it to Docker but I prefer to create my own project in Visual Studio to get a feel for the end-to-end process and to avoid any issues.  If you are not a programmer don't worry.  It is easy to create and build an example project in Visual Studio without knowing how to program.  Doing it this way, you can introduce internal and external dependencies such as 3rd party libraries or databases and use those in the test project as you see fit.  You can find examples on the web for creating new projects in Visual Studio but you are probably clever enough to poke around and get it done.  
+You can download a .NET Framework project from Github and try to build it but it is good idea to create a new project in Visual Studio or use an existing one.  Start simple, if your existing application has an extensive web.config you should create a new project for this test.  
+
+If you are not a programmer, don't worry.  It is easy to create and build an example project in Visual Studio without knowing how to program.  By creating a new project, you can introduce external dependencies--such as a database--in stages to prevent obscurring the test with unneeded complexity.  You can find examples on the web for creating new projects in Visual Studio but you are probably clever enough to poke around and get it done.  
 
 It is a good idea to instrument your application with **Azure Application Insights** at this point--if you have an Azure account.  This is easy to accomplish from within Visual Studio by right-clicking on the project.  It doesnt cost anything at this scale.  
 
