@@ -65,7 +65,7 @@ You can download a .NET Framework project from Github and try to build it but it
 
 If you are not a programmer, don't worry.  It is easy to create and build an example project in Visual Studio without knowing how to program.  You can find examples on the web for creating new projects in Visual Studio but you are probably clever enough to poke around and get it done.  Visual Studio hint: ```Ctrl+Shift+N, Visual C#, Web, ASP.NET Web Application (.NET Framework), Single Page Application```
 
-It is a good idea to instrument your application with **Azure Application Insights** at this point--if you have an Azure account.  This is easy to accomplish from within Visual Studio by right-clicking on the project.  It doesnt cost anything at this scale.  
+It is a good idea to instrument your application with **Azure Application Insights** at this point--if you have an Azure account.  This is easy to accomplish from within Visual Studio by right-clicking on the project.  It doesnt cost anything at this scale and it will provide detailed performance metrics and error reporting.
 
 ### Prepare the application for Docker
 Publish your application to a folder by right-clicking the project in Visual Studio.  Go to that folder and create a file named ``` Dockerfile```
