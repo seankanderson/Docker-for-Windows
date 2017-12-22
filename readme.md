@@ -87,7 +87,9 @@ Open a powershell console in the published folder, and run this:
 docker build -t myimage .
 ```
 
-This command references the Dockerfile (by convention) and pulls down the ```microsoft/aspnet``` image from the official Docker repository and combines it with your application to create a new image called: myimage.  You should have two images now. Verify.
+This command references the Dockerfile (by convention) and pulls down the ```microsoft/aspnet``` image from the official Docker repository and combines it with your application to create a new image called: myimage.  You should have two images when that is done. 
+
+Verify with:
 
 ```
 docker images
