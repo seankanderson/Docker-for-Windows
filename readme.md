@@ -130,7 +130,7 @@ docker logs mycontainer
 
 __Interact with Docker and containers via the Docker API__
 
-Enable **Expose daemon** in Docker General Settings to enable the API--via the tray icon right-click menu.  These links should work if you have enabled Docker Daemon access and are running Docker on your local machine with a live container named: mycontainer.
+Enable **Expose daemon** in Docker General Settings--via the tray icon right-click menu--to enable the API.  The links below should work if you have enabled Docker Daemon access and are running Docker on your local machine with a live container named: mycontainer.  The API can be used to start and stop containers and otherwise fully manage your Docker installation.
 
 http://localhost:2375/v1.32/containers/json
 
